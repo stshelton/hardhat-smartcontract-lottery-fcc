@@ -126,6 +126,15 @@ contract Raffle is VRFConsumerBaseV2, KeeperCompatibleInterface {
         bool hasPlayers = (s_players.length > 0);
         //check if we have balance
         bool hasBalance = address(this).balance > 0;
+
+        console.log("isOpen: ");
+        console.log(isOpen);
+        console.log("time Passed:");
+        console.log(timePassed);
+        console.log("hasPlayers");
+        console.log(hasPlayers);
+        console.log("has balance:");
+        console.log(hasBalance);
         upkeepNeeded = (isOpen && timePassed && hasPlayers && hasBalance);
     }
 
@@ -214,6 +223,10 @@ contract Raffle is VRFConsumerBaseV2, KeeperCompatibleInterface {
 
     function getRaffleState() public view returns (RaffleState) {
         return s_raffleState;
+    }
+
+    function getCurrentPrizeMoney() public view returns (uint256) {
+        return address(this).balance;
     }
 
     //since  num words is a constant variable not stored in storage we can change view to pure

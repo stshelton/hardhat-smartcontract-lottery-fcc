@@ -8,6 +8,8 @@ require("hardhat-contract-sizer")
 require("dotenv").config()
 
 const RINKEBY_RPC_URL = process.env.RINKEBY_RPC_URL
+const AVAXFUJI_RPC_URL = process.env.AVAX_FUJI_RPC_URL
+const AVAX_PRIVATE_KEY = process.env.AVAX_PRIVATE_KEY
 const PRIVATE_KEY = process.env.PRIVATE_KEY
 const ETHERSCAN_API_KEY = process.env.ETHERSCAN_API_KEY
 const COINMARKCAP_API_KEY = process.env.COINMARKETCAP_API_KEY
@@ -19,6 +21,15 @@ module.exports = {
         hardhat: {
             chainId: 31337,
             blockConfirmations: 1,
+        },
+        localhost: {
+            chainId: 31337,
+        },
+        AVAX_testnet: {
+            url: AVAXFUJI_RPC_URL,
+            chainId: 43113,
+            accounts: [AVAX_PRIVATE_KEY],
+            blockConfirmations: 6,
         },
         rinkeby: {
             url: RINKEBY_RPC_URL,
